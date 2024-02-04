@@ -184,45 +184,47 @@ if __name__ == "__main__":
             exit()
 
     while True:
-        print("1 - создать аккаунт")
-        print("2 - положить деньги на счет")
-        print("3 - снять деньги")
-        print("4 - вывести баланс на экран")
-        print("5 - выставление ожидаемого пополнения")
-        print("6 - выставление лимита на счёт")
-        print("7 - применить транзакции")
-        print("8 - вывести статистику по ожидаемым пополнениям")
-        print("9 - фильтрация отложенных пополнений")
-        print("10 - выйти из программы")
-        number_operation = int(input("Введите номер операции, которую хотите выполнить, из списка выше: "))
-        if number_operation == 1:
-            user_password_old = create_user()
-            user_balance_old = 0
-            count_transaction = 0
-            list_transaction_old = []
-        elif number_operation == 2:
-            user_balance_old = add_balance(user_balance_old)
-        elif number_operation == 3:
-            user_balance_old = take_money(user_balance_old, user_password_old)
-        elif number_operation == 4:
-            check_balance(user_balance_old, user_password_old)
-        elif number_operation == 5:
-            list_transaction_old = add_transaction(list_transaction_old)
-            count_transaction = count_transaction + 1
-        elif number_operation == 6:
-            user_limit = add_limit()
-        elif number_operation == 7:
-            user_balance_old, list_transaction_old = apply_transaction(user_balance_old, user_limit,
-                                                                       list_transaction_old)
-            count_transaction = len(list_transaction_old) // 2
-        elif number_operation == 8:
-            check_transaction(list_transaction_old)
-        elif number_operation == 9:
-            filter_pending_opetation(list_transaction_old)
-        elif number_operation == 10:
-            print("Спасибо за пользование нашей программой, до свидания!")
-            break
-        else:
-            print("Введен номер несуществующей операции.")
-        print("")
-
+        try:
+            print("1 - создать аккаунт")
+            print("2 - положить деньги на счет")
+            print("3 - снять деньги")
+            print("4 - вывести баланс на экран")
+            print("5 - выставление ожидаемого пополнения")
+            print("6 - выставление лимита на счёт")
+            print("7 - применить транзакции")
+            print("8 - вывести статистику по ожидаемым пополнениям")
+            print("9 - фильтрация отложенных пополнений")
+            print("10 - выйти из программы")
+            number_operation = int(input("Введите номер операции, которую хотите выполнить, из списка выше: "))
+            if number_operation == 1:
+                user_password_old = create_user()
+                user_balance_old = 0
+                count_transaction = 0
+                list_transaction_old = []
+            elif number_operation == 2:
+                user_balance_old = add_balance(user_balance_old)
+            elif number_operation == 3:
+                user_balance_old = take_money(user_balance_old, user_password_old)
+            elif number_operation == 4:
+                check_balance(user_balance_old, user_password_old)
+            elif number_operation == 5:
+                list_transaction_old = add_transaction(list_transaction_old)
+                count_transaction = count_transaction + 1
+            elif number_operation == 6:
+                user_limit = add_limit()
+            elif number_operation == 7:
+                user_balance_old, list_transaction_old = apply_transaction(user_balance_old, user_limit,
+                                                                           list_transaction_old)
+                count_transaction = len(list_transaction_old) // 2
+            elif number_operation == 8:
+                check_transaction(list_transaction_old)
+            elif number_operation == 9:
+                filter_pending_opetation(list_transaction_old)
+            elif number_operation == 10:
+                print("Спасибо за пользование нашей программой, до свидания!")
+                break
+            else:
+                print("Введен номер несуществующей операции.")
+            print("")
+        except ValueError:
+            print("Введены некоректные данные. Неоходимо ввести сумму числом" + "\n")
